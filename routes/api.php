@@ -16,6 +16,6 @@ Route::get('/test', function (Request $request) {
         'articles' => Article::get(),
         'articles' => Article::with('category')->get(),
         'categories' => Category::with('articles')->get(),
-        // 'comments' => Comment::all(),
+        'comments' => Comment::all(),
     ]);
 });
