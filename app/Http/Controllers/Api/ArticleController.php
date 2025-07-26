@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
         return response()->json([
-            'data' => Article::with('category', 'comments')->get(),
+            'data' => Article::search($request->get('search', ''))->get(),
         ]);
     }
 
