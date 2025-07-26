@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('parent_id')->nullable()->index('parent_id');
             $table->foreignUuid('user_id');
-            $table->foreignUuid('post_id');
+            $table->foreignUuid('article_id');
             $table->text('content');
             $table->timestamps();
         });
