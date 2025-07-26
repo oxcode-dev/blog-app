@@ -25,7 +25,7 @@ class ArticleFactory extends Factory
             'url' => fake()->url(),
             'image' => fake()->imageUrl(),
             'source' => fake()->name(),
-            'category_id' => Category::first()->id,
+            'category_id' => Category::factory(),
         ];
     }
 }
