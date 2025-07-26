@@ -32,4 +32,15 @@ class Article extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public static function search($query)
+    {
+        $relations = ['comments', 'category'];
+
+        return empty($query) ? static::query()->with($relations)
+            : static::with($relations)
+                ->where('title', 'like', '%'.$query.'%')
+                ->orWhere('source', 'like', '%'.$query.'%')
+                ->orWhere('author', 'like', '%'.$query.'%');
+    }
 }

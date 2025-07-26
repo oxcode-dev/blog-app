@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CommentController;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
@@ -30,4 +31,9 @@ Route::prefix('articles')->group(function () {
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('api.categories');
     Route::get('/{category}', [CategoryController::class, 'show'])->name('api.categories_show');
+});
+
+Route::prefix('comments')->group(function () {
+    Route::get('/', [CommentController::class, 'index'])->name('api.comments');
+    Route::get('/{comment}', [CommentController::class, 'show'])->name('api.comments_show');
 });
