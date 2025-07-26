@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('url')->nullable();
             $table->text('image')->nullable();
             $table->text('source')->nullable();
+            $table->foreignUuid('category_id');
             $table->timestamps();
         });
     }
