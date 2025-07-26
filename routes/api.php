@@ -13,9 +13,9 @@ Route::get('/user', function (Request $request) {
 Route::get('/test', function (Request $request) {
     return response()->json([
         'hello' => 'world',
-        // 'articles' => Article::get(),
+        'articles' => Article::get(),
         'articles' => Article::with('category')->get(),
-        'categories' => Category::all(),
+        'categories' => Category::with('articles')->get(),
         // 'comments' => Comment::all(),
     ]);
 });
