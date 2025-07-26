@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
@@ -24,4 +25,9 @@ Route::get('/test', function (Request $request) {
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('api.articles');
     Route::get('/{article}', [ArticleController::class, 'show'])->name('api.articles_show');
+});
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('api.categories');
+    Route::get('/{category}', [CategoryController::class, 'show'])->name('api.categories_show');
 });
