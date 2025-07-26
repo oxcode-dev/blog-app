@@ -30,6 +30,6 @@ class Article extends Model
 
     public function talent(): BelongsTo
     {
-        return $this->category(Category::class);
+        return $this->category(Category::class, 'category_id');
     }
 }
