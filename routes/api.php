@@ -23,4 +23,5 @@ Route::get('/test', function (Request $request) {
 
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('api.articles');
+    Route::get('/{article}', [ArticleController::class, 'show'])->name('api.articles_show');
 });

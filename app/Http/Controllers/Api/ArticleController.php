@@ -13,4 +13,10 @@ class ArticleController extends Controller
             'data' => Article::with('category', 'comments')->get(),
         ]);
     }
+
+    public function show(Article $article) {
+        return response()->json([
+            'data' => $article::with('category', 'comments')->first(),
+        ]);
+    }
 }
