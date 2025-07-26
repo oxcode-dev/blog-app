@@ -21,7 +21,8 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake()->uuid(),
+            // 'id' => fake()->uuid(),
+            // 'name' => $category = fake()->name,
             'name' => $category = fake()->randomElement($this->categories),
             'slug' => Str::slug($category),// . '-' . strtotime(now()),
             'description' => fake()->realText(200, 2),

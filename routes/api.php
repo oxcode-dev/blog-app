@@ -13,8 +13,8 @@ Route::get('/user', function (Request $request) {
 Route::get('/test', function (Request $request) {
     return response()->json([
         'hello' => 'world',
-        'articles' => Article::all(),
+        'articles' => Article::with('category')->get(),
         'categories' => Category::all(),
-        'comments' => Comment::all(),
+        // 'comments' => Comment::all(),
     ]);
 });
