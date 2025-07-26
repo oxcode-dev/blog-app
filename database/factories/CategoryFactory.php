@@ -24,7 +24,7 @@ class CategoryFactory extends Factory
             // 'id' => fake()->uuid(),
             // 'name' => $category = fake()->name,
             'name' => $category = fake()->randomElement($this->categories),
-            'slug' => Str::slug($category),// . '-' . strtotime(now()),
+            'slug' => Str::slug($category) . '-' . strtotime(now()),
             'description' => fake()->realText(200, 2),
         ];
     }

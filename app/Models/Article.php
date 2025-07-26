@@ -23,13 +23,8 @@ class Article extends Model
         'category_id' 
     ];
 
-    // public function category()
-    // {
-    //     return $this->hasMany(Category::class);
-    // }
-
-    public function talent(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->category(Category::class, 'category_id');
+        return $this->BelongsTo(Category::class);
     }
 }
