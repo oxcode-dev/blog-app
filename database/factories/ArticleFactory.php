@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,6 +25,7 @@ class ArticleFactory extends Factory
             'url' => fake()->url(),
             'image' => fake()->imageUrl(),
             'source' => fake()->name(),
+            'category_id' => Category::first()->id,
         ];
     }
 }
