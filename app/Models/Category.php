@@ -16,12 +16,7 @@ class Category extends Model
         'description',
     ];
 
-    // public function article()
-    // {
-    //     return $this->belongsTo(Article::class);
-    // }
-
-     public function articles()
+    public function articles()
     {
         return $this->hasMany(Article::class);
     }
