@@ -20,12 +20,12 @@ class ArticleFactory extends Factory
         return [
             'title' => fake()->sentence,
             'author' => fake()->name,
-            'description' => fake()->sentence,
-            'content' => fake()->sentence,
+            'description' => fake()->realText(200, 2),
+            'content' => fake()->realText(1000, 2),
             'url' => fake()->url(),
             'image' => fake()->imageUrl(),
             'source' => fake()->name(),
-            'category_id' => Category::factory(),
+            'category_id' => Category::factory()['id'],
         ];
     }
 }

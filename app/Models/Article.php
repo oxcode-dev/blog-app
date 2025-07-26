@@ -10,4 +10,15 @@ class Article extends Model
 {
     /** @use HasFactory<\Database\Factories\ArticleFactory> */
     use HasFactory, HasUuids;
+
+    protected $fillable = [
+        'title',
+        'author',
+        'description',
+        'content',
+        'url',
+        'image',
+        'source',
+        'category_id' 
+    ];
 }
