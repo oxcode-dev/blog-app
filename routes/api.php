@@ -16,7 +16,9 @@ Route::controller(RegisterController::class)->group(function(){
 });
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+    if($request->user()) {
+        return $request->user();
+    }
 })->middleware('auth:sanctum');
 
 Route::get('/test', function (Request $request) {
