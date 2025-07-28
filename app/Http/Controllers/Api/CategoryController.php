@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\API\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
     public function index() 
     {
@@ -17,7 +19,13 @@ class CategoryController extends Controller
 
     public function show(Category $category) {
         return response()->json([
-            'data' => $category::with('articles')->firstOrFail(),
+            'data' => $category::withCount('articles')->firstOrFail(),
         ]);
+    }
+
+    public function articles(Request $request, Category $category) 
+    {
+        $articles = Article::search($request->get('search', ''))->where('category_id', $category->id)->get();
+        return $this->sendResponse($articles, 'Category Articles fetched successfully.');
     }
 }

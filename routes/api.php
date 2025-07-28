@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\API\RegisterController;
 use App\Models\Article;
 use App\Models\Category;
@@ -10,10 +11,10 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(RegisterController::class)->group(function(){
-    Route::post('register', 'register');
-    Route::post('login', 'login');
-});
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
+
 
 Route::get('/user', function (Request $request) {
     if($request->user()) {
@@ -39,6 +40,7 @@ Route::prefix('articles')->group(function () {
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('api.categories');
     Route::get('/{category}', [CategoryController::class, 'show'])->name('api.categories_show');
+    Route::get('/{category}/articles', [CategoryController::class, 'articles'])->name('api.categories_articles');
 });
 
 Route::prefix('comments')->group(function () {
