@@ -10,7 +10,7 @@ class ArticleController extends Controller
     public function index(Request $request) 
     {
         return response()->json([
-            'data' => Article::search($request->get('search', ''))->get(),
+            'data' => Article::search($request->get('search', ''))->paginate(3),
         ]);
     }
 
@@ -22,7 +22,7 @@ class ArticleController extends Controller
 }
 
 
-// $products = Product::when($request->has('category'), function ($query) use ($request) {
+// $products = Article::when($request->has('category'), function ($query) use ($request) {
 //     $query->where('category_id', $request->input('category'));
 // })->when($request->has('min_price'), function ($query) use ($request) {
 //     $query->where('price', '>=', $request->input('min_price'));
