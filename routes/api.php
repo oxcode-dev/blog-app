@@ -3,14 +3,19 @@
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\API\RegisterController;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::controller(RegisterController::class)->group(function(){
+    Route::post('register', 'register');
+    Route::post('login', 'login');
+});
+
 Route::get('/user', function (Request $request) {
-    
     return $request->user();
 })->middleware('auth:sanctum');
 

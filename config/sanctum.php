@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Laravel\Sanctum\Sanctum;
 
 return [
@@ -34,7 +36,9 @@ return [
     |
     */
 
-    'guard' => ['web', 'api'],
+    // 'guard' => ['web', 'api'],
+    // 'guard' => ['api'],
+    'guard' => ['web'],
 
     /*
     |--------------------------------------------------------------------------
@@ -48,6 +52,7 @@ return [
     */
 
     'expiration' => null,
+    // 'expiration' => 525600,
 
     /*
     |--------------------------------------------------------------------------
@@ -81,4 +86,5 @@ return [
         'validate_csrf_token' => Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class,
     ],
 
+    // 'domain' => env('SESSION_DOMAIN', '.tech1m.com'),
 ];
