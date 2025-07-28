@@ -20,3 +20,10 @@ class ArticleController extends Controller
         ]);
     }
 }
+
+
+// $products = Product::when($request->has('category'), function ($query) use ($request) {
+//     $query->where('category_id', $request->input('category'));
+// })->when($request->has('min_price'), function ($query) use ($request) {
+//     $query->where('price', '>=', $request->input('min_price'));
+// })->get();
