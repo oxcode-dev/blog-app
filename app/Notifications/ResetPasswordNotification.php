@@ -11,12 +11,12 @@ class ResetPasswordNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct()
+
+    public $otp;
+
+    public function __construct(string $otp)
     {
-        //
+        $this->otp = $otp;
     }
 
     /**
@@ -34,10 +34,10 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+        return (new MailMessage())
+            ->line('Forgot password?')
+            ->line('Here is your OTP: '.$this->otp)
+            ->line('Thank you for using our Blog App!');
     }
 
     /**
