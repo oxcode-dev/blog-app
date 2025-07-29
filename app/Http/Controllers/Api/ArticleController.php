@@ -32,7 +32,7 @@ class ArticleController extends BaseController
         
         return $this->sendResponse(
             $comments, 
-            'Category Articles fetched successfully.'
+            'Article comments fetched successfully.'
         );
     }
 }
