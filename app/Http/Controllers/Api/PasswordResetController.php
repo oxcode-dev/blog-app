@@ -67,4 +67,21 @@ class PasswordResetController extends BaseController
         );
     }
 
+    public function generateOtp(Request $request)//: \Illuminate\Http\JsonResponse
+    {
+        $data = $request->validate(['email' => 'required|email']);
+
+        if (User::where('email', $data['email'])->exists()) {
+            $user = User::where('email', $data['email'])->firstOrFail();
+            $user->sendPasswordResetNotification();
+
+            return $this->sendResponse(
+                'email sent successfully', 
+                'Generate OTP.'
+            );
+        } else {
+            return $this->sendError('email does not exist.', ['error'=>'failed']);
+        }
+    }
+
 }

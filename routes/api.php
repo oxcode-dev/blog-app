@@ -46,7 +46,7 @@ Route::prefix('comments')->group(function () {
     Route::get('/{comment}', [CommentController::class, 'show'])->name('api.comments_show');
 });
 
-Route::group(function () {
+// Route::group(function () {
     Route::get('/user', function (Request $request) {
         if($request->user()) {
             return $request->user();
@@ -54,4 +54,4 @@ Route::group(function () {
     });
     Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('api.update_profile');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('api.update_password');
-});
+// });
