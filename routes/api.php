@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PasswordResetController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\API\RegisterController;
 use App\Models\Article;
 use App\Models\Category;
@@ -17,13 +18,6 @@ Route::post('/login', [LoginController::class, 'login'])->name('api.login');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum')->name('api.logout');
 Route::post('/forgot-password', [PasswordResetController::class, 'forgot'])->name('api.forgot_password');
 Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('api.reset_password');
-
-
-Route::get('/user', function (Request $request) {
-    if($request->user()) {
-        return $request->user();
-    }
-})->middleware('auth:sanctum');
 
 Route::get('/test', function (Request $request) {
     return response()->json([
@@ -50,4 +44,14 @@ Route::prefix('categories')->group(function () {
 Route::prefix('comments')->group(function () {
     Route::get('/', [CommentController::class, 'index'])->name('api.comments');
     Route::get('/{comment}', [CommentController::class, 'show'])->name('api.comments_show');
+});
+
+Route::group(function () {
+    Route::get('/user', function (Request $request) {
+        if($request->user()) {
+            return $request->user();
+        }
+    });
+    Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('api.update_profile');
+    Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('api.update_password');
 });

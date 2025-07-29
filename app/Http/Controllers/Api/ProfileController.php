@@ -39,7 +39,7 @@ class ProfileController extends BaseController
             'name' => 'sometimes',
             'email' => [
                 'sometimes',
-                Rule::unique('clients')->ignore($user->id),
+                Rule::unique('users')->ignore($user->id),
             ],
             'phone' => 'sometimes',
         ]);
