@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
-Route::post('/forgot-password', [PasswordResetController::class, 'for'])->middleware('auth:sanctum');
+Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);//->middleware('auth:sanctum');
 
 
 Route::get('/user', function (Request $request) {
