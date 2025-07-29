@@ -51,4 +51,35 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function generatePin($digits = 4): string
+    {
+        $i = 0; //counter
+        $pin = ''; //our default pin is blank.
+
+        while ($i < $digits) {
+            //generate a random number between 0 and 9.
+            $pin .= random_int(0, 9);
+            $i++;
+        }
+
+        return $pin;
+    }
+
+    public function sendPasswordResetNotification($token = null)
+    {
+        $result = $this->generatePin(5);
+
+        // $this->notify(new ResetPasswordNotification($result));
+
+        // OtpCode::where('email', $this->email)->delete();
+
+        // OtpCode::create([
+        //     'code' => $result,
+        //     'email' => $this->email,
+        //     'expires_at' => now()->addMinutes(5),
+        // ]);
+
+        return $result;
+    }
 }
