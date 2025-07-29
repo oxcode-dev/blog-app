@@ -35,6 +35,7 @@ Route::get('/test', function (Request $request) {
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('api.articles');
     Route::get('/{article}', [ArticleController::class, 'show'])->name('api.articles_show');
+    Route::get('/{article}/comments', [ArticleController::class, 'comments'])->name('api.articles_comments');
 });
 
 Route::prefix('categories')->group(function () {
