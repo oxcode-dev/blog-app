@@ -25,7 +25,13 @@ class CategoryController extends BaseController
 
     public function articles(Request $request, Category $category) 
     {
-        $articles = Article::search($request->get('search', ''))->where('category_id', $category->id)->get();
+        $articles = Article::search($request->get('search', ''))
+            ->where('category_id', $category->id)
+            ->orderBy(
+                $request->get('sortField', 'created_at'),
+                $request->get('sortAsc') === 'true' ? 'asc' : 'desc'
+            )    
+            ->paginate($request->get('perPage', 5));
         
         return $this->sendResponse(
             $articles, 
