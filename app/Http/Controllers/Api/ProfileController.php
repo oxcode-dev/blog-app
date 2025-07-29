@@ -13,12 +13,14 @@ class ProfileController extends BaseController
     public function updatePassword(Request $request)//: \Illuminate\Http\JsonResponse
     {
         $data = $request->validate([
+            'email' => 'required',
             'current_password' => 'required',
             'password' => 'required|confirmed',
             'password_confirmation' => 'required',
         ]);
 
-        $user = $request->user('api');
+        $user = $request->user();
+        // $user = User::where('email', $data['email'])->first();
 
         if(!$user || !Hash::check($data['current_password'], $user->password)) {
             return $this->sendError([
@@ -34,16 +36,18 @@ class ProfileController extends BaseController
 
     public function updateProfile(Request $request)//: \Illuminate\Http\JsonResponse
     {
-        $user =  $request->user('api');
+        $user =  $request->user();
 
         $data  = $request->validate([
             'name' => 'sometimes',
             'email' => [
-                'request',
+                'required',
                 Rule::unique('users')->ignore($user->id),
             ],
             // 'phone' => 'sometimes',
         ]);
+
+        // $user = User::where('email', $data['email'])->first();
 
         $user->name = e($data['name']);
         $user->email = e($data['email']);
