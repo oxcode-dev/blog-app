@@ -26,6 +26,10 @@ class CategoryController extends BaseController
     public function articles(Request $request, Category $category) 
     {
         $articles = Article::search($request->get('search', ''))->where('category_id', $category->id)->get();
-        return $this->sendResponse($articles, 'Category Articles fetched successfully.');
+        
+        return $this->sendResponse(
+            $articles, 
+            'Category Articles fetched successfully.'
+        );
     }
 }
