@@ -11,7 +11,12 @@ class ArticleController extends BaseController
 {
     public function index(Request $request) 
     {
-        $articles = Article::search($request->get('search', ''))->paginate(3);
+        $articles = Article::search($request->get('search', ''))
+            ->orderBy(
+                $request->get('sortField', 'created_at'),
+                $request->get('sortAsc') === 'true' ? 'asc' : 'desc'
+            )    
+            ->paginate($request->get('perPage', 5));
 
         return $this->sendResponse(
             $articles,
