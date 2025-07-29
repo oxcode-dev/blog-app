@@ -72,13 +72,13 @@ class User extends Authenticatable
 
         // $this->notify(new ResetPasswordNotification($result));
 
-        // OtpCode::where('email', $this->email)->delete();
+        OtpCode::where('email', $this->email)->delete();
 
-        // OtpCode::create([
-        //     'code' => $result,
-        //     'email' => $this->email,
-        //     'expires_at' => now()->addMinutes(5),
-        // ]);
+        OtpCode::create([
+            'code' => $result,
+            'email' => $this->email,
+            'expires_at' => now()->addMinutes(5),
+        ]);
 
         return $result;
     }
