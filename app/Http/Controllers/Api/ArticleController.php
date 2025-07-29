@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\API\BaseController;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ArticleController extends BaseController
@@ -27,7 +28,7 @@ class ArticleController extends BaseController
 
     public function comments(Request $request, Article $article) 
     {
-        $comments = Article::search($request->get('search', ''))->where('article_id', $article->id)->get();
+        $comments = Comment::where('article_id', $article->id)->get();
         
         return $this->sendResponse(
             $comments, 
