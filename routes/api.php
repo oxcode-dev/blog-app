@@ -12,10 +12,11 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
-Route::post('/forgot-password', [PasswordResetController::class, 'forgot']);//->middleware('auth:sanctum');
+Route::post('/register', [RegisterController::class, 'register'])->name('api.register');
+Route::post('/login', [LoginController::class, 'login'])->name('api.login');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum')->name('api.logout');
+Route::post('/forgot-password', [PasswordResetController::class, 'forgot'])->name('api.forgot_password');
+Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('api.reset_password');
 
 
 Route::get('/user', function (Request $request) {
