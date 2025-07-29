@@ -14,20 +14,15 @@ class PasswordResetController extends BaseController
 
         if (User::where('email', $data['email'])->exists()) {
             $user = User::where('email', $data['email'])->firstOrFail();
-            $code = $user->sendPasswordResetNotification();
-            $data = [
-                'status' => 'success',
-                'message' => 'email sent successfully',
-                'code' => $code,
-            ];
-        } else {
-            $data = [
-                'status' => 'failed',
-                'message' => 'email does not exist',
-            ];
-        }
+            $user->sendPasswordResetNotification();
 
-        return response()->json($data, 201);
+            return $this->sendResponse(
+                'email sent successfully', 
+                'Forgot Password Request.'
+            );
+        } else {
+            return $this->sendError('email does not exist.', ['error'=>'failed']);
+        }
     }
 
 }
