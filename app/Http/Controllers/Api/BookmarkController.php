@@ -23,10 +23,10 @@ class BookmarkController extends BaseController
         ]);
     }
 
-    public function articles(Request $request, Bookmark $bookmark) 
+    public function userBookmark(Request $request) 
     {
-        $articles = Article::search($request->get('search', ''))
-            ->where('bookmark_id', $bookmark->id)
+        $articles = Bookmark::with('article')
+            ->where('user_id', 1)
             ->orderBy(
                 $request->get('sortField', 'created_at'),
                 $request->get('sortAsc') === 'true' ? 'asc' : 'desc'
@@ -41,8 +41,6 @@ class BookmarkController extends BaseController
 
     public function updateBookmark(Request $request) 
     {
-        // $table->foreignUuid('user_id');
-        //     $table->foreignUuid('article_id');
 
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',

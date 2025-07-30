@@ -58,8 +58,8 @@ Route::post('/change-password', [ProfileController::class, 'updatePassword'])->n
 
 Route::prefix('bookmark')->group(function () {
     Route::get('/', [BookmarkController::class, 'index'])->name('api.bookmarks');
+    Route::get('/user', [BookmarkController::class, 'userBookmark'])->name('api.bookmarks_user');
     Route::get('/{bookmark}', [BookmarkController::class, 'show'])->name('api.bookmarks_show');
-    Route::get('/{bookmark}/articles', [BookmarkController::class, 'articles'])->name('api.bookmarks_articles');
 
     Route::post('/', [BookmarkController::class, 'updateBookmark'])->name('api.bookmark_update');
 });
