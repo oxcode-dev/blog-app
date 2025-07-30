@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\API\BaseController;
 use Illuminate\Http\Request;
 
-class BookmarkController extends Controller
+class BookmarkController extends BaseController
 {
     //
 }
