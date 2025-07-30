@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('user_id');
+            $table->foreignUuid('article_id');
             $table->timestamps();
         });
     }
