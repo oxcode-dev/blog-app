@@ -33,6 +33,11 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+
     public static function search($query)
     {
         $relations = ['comments', 'category'];
