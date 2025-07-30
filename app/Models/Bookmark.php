@@ -11,6 +11,11 @@ class Bookmark extends Model
     /** @use HasFactory<\Database\Factories\BookmarkFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'article_id',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->BelongsTo(User::class);
