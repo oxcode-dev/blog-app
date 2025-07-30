@@ -61,5 +61,5 @@ Route::prefix('bookmark')->group(function () {
     Route::get('/{bookmark}', [BookmarkController::class, 'show'])->name('api.bookmarks_show');
     Route::get('/{bookmark}/articles', [BookmarkController::class, 'articles'])->name('api.bookmarks_articles');
 
-    // Route::post('/', [BookmarkController::class, 'updatePassword'])->name('api.bookmark_add');
+    Route::post('/', [BookmarkController::class, 'updateBookmark'])->name('api.bookmark_update');
 });

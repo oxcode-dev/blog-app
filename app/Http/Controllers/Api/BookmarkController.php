@@ -54,7 +54,24 @@ class BookmarkController extends BaseController
         }
 
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = Bookmark::create($input);
+        if (Bookmark::where('user_id', $input['user_id'])->where('article_id', $input['user_id'])->exists()) {
+            $bookmark = Bookmark::where('user_id', $input['user_id'])->where('article_id', $input['user_id'])->first();
+            $bookmark->delete();
+
+            return $this->sendResponse(
+                'Bookmark Removed Successfully', 
+                'Bookmark Removed.'
+            );
+        }
+        $bookmark = new Bookmark();
+        $bookmark->user_id = $input['user_id'];
+        $bookmark->article_id = $input['article_id'];
+
+        $bookmark->save();
+
+        return $this->sendResponse(
+            'Bookmark Added Successfully', 
+            'Bookmark Added.'
+        );
     }
 }
