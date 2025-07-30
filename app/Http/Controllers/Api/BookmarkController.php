@@ -25,8 +25,10 @@ class BookmarkController extends BaseController
 
     public function userBookmark(Request $request) 
     {
+        $user =  $request->user();
+
         $articles = Bookmark::with('article')
-            ->where('user_id', 1)
+            ->where('user_id', $user['id'])
             ->orderBy(
                 $request->get('sortField', 'created_at'),
                 $request->get('sortAsc') === 'true' ? 'asc' : 'desc'
@@ -43,7 +45,6 @@ class BookmarkController extends BaseController
     {
 
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
             'article_id' => 'required',
         ]);
    
@@ -51,9 +52,11 @@ class BookmarkController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());       
         }
 
+        $user =  $request->user();
+
         $input = $request->all();
-        if (Bookmark::where('user_id', $input['user_id'])->where('article_id', $input['user_id'])->exists()) {
-            $bookmark = Bookmark::where('user_id', $input['user_id'])->where('article_id', $input['user_id'])->first();
+        if (Bookmark::where('user_id',  $user['id'])->where('article_id', $input['article_id'])->exists()) {
+            $bookmark = Bookmark::where('user_id',  $user['id'])->where('article_id', $input['article_id'])->first();
             $bookmark->delete();
 
             return $this->sendResponse(
@@ -62,7 +65,7 @@ class BookmarkController extends BaseController
             );
         }
         $bookmark = new Bookmark();
-        $bookmark->user_id = $input['user_id'];
+        $bookmark->user_id =  $user['id'];
         $bookmark->article_id = $input['article_id'];
 
         $bookmark->save();
