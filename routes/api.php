@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\BookmarkController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\LoginController;
@@ -46,12 +47,19 @@ Route::prefix('comments')->group(function () {
     Route::get('/{comment}', [CommentController::class, 'show'])->name('api.comments_show');
 });
 
-// Route::group(function () {
-    Route::get('/user', function (Request $request) {
-        if($request->user()) {
-            return $request->user();
-        }
-    });
-    Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('api.update_profile');
-    Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('api.update_password');
-// });
+Route::get('/user', function (Request $request) {
+    if($request->user()) {
+        return $request->user();
+    }
+});
+Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('api.update_profile');
+Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('api.update_password');
+
+
+Route::prefix('bookmark')->group(function () {
+    Route::get('/', [BookmarkController::class, 'index'])->name('api.bookmarks');
+    Route::get('/{bookmark}', [BookmarkController::class, 'show'])->name('api.bookmarks_show');
+    Route::get('/{bookmark}/articles', [BookmarkController::class, 'articles'])->name('api.bookmarks_articles');
+
+    // Route::post('/', [BookmarkController::class, 'updatePassword'])->name('api.bookmark_add');
+});
