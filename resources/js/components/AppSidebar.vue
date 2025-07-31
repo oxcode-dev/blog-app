@@ -19,6 +19,11 @@ const mainNavItems: NavItem[] = [
         href: '/articles',
         icon: BookOpen,
     },
+    {
+        title: 'Categories',
+        href: '/categories',
+        icon: BookOpen,
+    },
 ];
 
 </script>
