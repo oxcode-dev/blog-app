@@ -54,4 +54,3 @@ const mainNavItems: NavItem[] = [
     </Sidebar>
     <slot />
 </template>
-
