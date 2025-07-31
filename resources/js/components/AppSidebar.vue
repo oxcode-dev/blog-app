@@ -55,4 +55,3 @@ const mainNavItems: NavItem[] = [
     <slot />
 </template>
 
-
