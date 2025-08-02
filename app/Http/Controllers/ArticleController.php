@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -37,6 +38,7 @@ class ArticleController extends Controller
     {
         return Inertia::render('articles/Form', [
             'status' => $request->session()->get('status'),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -45,6 +47,7 @@ class ArticleController extends Controller
         return Inertia::render('articles/Form', [
             'status' => $request->session()->get('status'),
             'article' => $article,
+            'categories' => Category::all(),
         ]);
     }
 }
