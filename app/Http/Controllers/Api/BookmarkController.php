@@ -13,7 +13,7 @@ class BookmarkController extends BaseController
     public function index() 
     {
         return response()->json([
-            'data' => Bookmark::withCount('article')->get(),
+            'data' => Bookmark::with('article')->get(),
         ]);
     }
 
