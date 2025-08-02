@@ -32,4 +32,19 @@ class ArticleController extends Controller
             'article' => $article,
         ]);
     }
+
+    public function create(Request $request)
+    {
+        return Inertia::render('articles/Form', [
+            'status' => $request->session()->get('status'),
+        ]);
+    }
+
+    public function edit(Request $request, Article $article)
+    {
+        return Inertia::render('articles/Form', [
+            'status' => $request->session()->get('status'),
+            'article' => $article,
+        ]);
+    }
 }
