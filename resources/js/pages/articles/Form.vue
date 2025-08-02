@@ -1,11 +1,15 @@
-<script setup lang="ts">
+<script setup lang="js">
+import InputError from '@/components/InputError.vue';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { LoaderCircle } from 'lucide-vue-next';
+import { ref } from 'vue';
 import { computed } from 'vue';
 
 
-const breadcrumbs: BreadcrumbItem[] = [
+const breadcrumbs = [
     {
         title: 'Articles',
         href: '/articles',
@@ -14,6 +18,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const article = computed(() => usePage().props?.article || {})
 
+const form = useForm({
+    title: '',
+});
+
 </script>
 
 <template>
@@ -21,53 +29,30 @@ const article = computed(() => usePage().props?.article || {})
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
-            <div class="flex justify-end px-4">
-                <Link :href="`/article/${article?.id}/edit`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
-                    Edit
-                </Link>
-            </div>
             <div class="bg-white shadow-sm overflow-hidden sm:rounded-lg my-4">
-                <div class="px-4 py-5 sm:p-0">
-                    <dl class="sm:divide-y sm:divide-gray-200 capitalize">
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Title</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.title || '' }}</dd>
+                <div class="px-4 py-5 w-full md:max-w-lg">
+                    <form>
+                        <div class="grid gap-2">
+                            <Label for="title">Title</Label>
+                            <Input
+                                id="title"
+                                type="text"
+                                required
+                                autofocus
+                                :tabindex="1"
+                                autocomplete="title"
+                                v-model="form.title"
+                                placeholder="Article Title..."
+                            />
+                            <InputError :message="form?.errors?.title" />
                         </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Author</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.author || '' }}</dd>
+                        <div>
+                            <Button type="submit" class="mt-4" :tabindex="4" :disabled="form.processing">
+                                <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
+                                Submit
+                            </Button>
                         </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Category</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.category?.name || '' }}</dd>
-                        </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">url</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 lowercase">{{ article?.url || '' }}</dd>
-                        </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">source</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.source || '' }}</dd>
-                        </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">description</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.description || '' }}</dd>
-                        </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">content</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.content || '' }}</dd>
-                        </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Image</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <img :src="article?.image" :alt="article?.title" />
-                            </dd>
-                        </div>
-                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Posted Date</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.created_at || '' }}</dd>
-                        </div>
-                    </dl>
+                    </form>
                 </div>
             </div>
         </div>
