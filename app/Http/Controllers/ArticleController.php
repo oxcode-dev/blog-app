@@ -24,6 +24,6 @@ class ArticleController extends Controller
 
     public function view(Request $request, Article $article)//: Response
     {
-        dd($article);
+        dd($article::with('category', 'comments')->firstOrFail()->toArray());
     }
 }
