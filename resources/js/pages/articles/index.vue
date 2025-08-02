@@ -23,7 +23,13 @@ const articlesData = computed(() => usePage().props?.articles?.data || [])
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
+            <div class="flex justify-end px-4">
+                <Link :href="`/article/create`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
+                    Create
+                </Link>
+            </div>
             <div class="relative min-h-[100vh] rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
+                
                 <!-- <pre>{{ articles }}</pre> -->
 
                 <div>
