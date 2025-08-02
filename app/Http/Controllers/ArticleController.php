@@ -16,7 +16,8 @@ class ArticleController extends Controller
                 $request->get('sortAsc') === 'true' ? 'asc' : 'desc'
             )    
             ->paginate($request->get('perPage', 10));
-        return Inertia::render('Articles', [
+
+        return Inertia::render('articles/index', [
             'status' => $request->session()->get('status'),
             'articles' => $articles,
         ]);
@@ -26,7 +27,7 @@ class ArticleController extends Controller
     {
         $article = $article::with('category', 'comments')->firstOrFail();
 
-        return Inertia::render('Articles', [
+        return Inertia::render('articles/show', [
             'status' => $request->session()->get('status'),
             'articles' => $article,
         ]);
