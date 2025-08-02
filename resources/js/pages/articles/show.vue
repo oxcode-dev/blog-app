@@ -26,7 +26,7 @@ const article = computed(() => usePage().props?.article || {})
                     Edit
                 </Link>
             </div>
-            <div class="bg-white shadow-sm overflow-hidden sm:rounded-lg my-4">
+            <div class="bg-transparent shadow-sm overflow-hidden sm:rounded-lg my-4">
                 <div class="px-4 py-5 sm:p-0">
                     <dl class="sm:divide-y sm:divide-gray-200 capitalize">
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

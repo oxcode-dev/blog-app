@@ -33,7 +33,7 @@ const articlesData = computed(() => usePage().props?.articles?.data || [])
                 <!-- <pre>{{ articles }}</pre> -->
 
                 <div>
-                    <table class="min-w-full bg-white">
+                    <table class="min-w-full bg-transparent">
                         <thead>
                             <tr class="bg-gray-500 text-white border-b">
                                 <th class="py-3 px-4 text-left">Title</th>
