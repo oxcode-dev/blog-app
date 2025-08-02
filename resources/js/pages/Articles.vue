@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import Pager from '@/components/Pager.vue';
+
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -22,6 +24,7 @@ const articlesData = computed(() => usePage().props?.articles?.data || [])
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <div class="relative min-h-[100vh] rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
+                <pre>{{ articles }}</pre>
 
                 <div>
                     <table class="min-w-full bg-white shadow-md rounded-xl">
@@ -48,6 +51,33 @@ const articlesData = computed(() => usePage().props?.articles?.data || [])
                         
                         </tbody>
                     </table>
+                </div>
+
+                <!-- <div class='flex items-center justify-center'>
+                    <div class="flex justify-center items-center space-x-4">
+                        <div v-if="articles?.prev_page_url" class="border rounded-md bg-gray-100 px-2 py-1 text-3xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm">
+                            <Link :href="articles?.prev_page_url">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                </svg>
+                            </Link>
+                        </div>
+                        <div class="text-slate-500">
+                            <span class="font-bold text-lg">{{ `${articles?.current_page} ` }}</span>
+                            <span>{{ ` / ${articles?.last_page}` }}</span>
+                            
+                        </div>
+                        <div v-if="articles?.next_page_url" class="border rounded-md bg-gray-100 px-2 py-1 text-3xl leading-6 text-slate-400 transition hover:bg-gray-200 hover:text-slate-500 cursor-pointer shadow-sm">
+                            <Link :href="articles?.next_page_url">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </Link>
+                        </div>
+                    </div>
+                </div> -->
+                <div>
+                    <Pager :item="articles" />
                 </div>
             </div>
         </div>
