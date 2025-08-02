@@ -21,4 +21,9 @@ class ArticleController extends Controller
             'articles' => $articles,
         ]);
     }
+
+    public function view(Request $request, Article $article)//: Response
+    {
+        dd($article);
+    }
 }

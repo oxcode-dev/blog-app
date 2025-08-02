@@ -12,7 +12,10 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('articles', [ArticleController::class, 'index'])->middleware(['auth', 'verified'])->name('articles');
+Route::prefix('articles')->group(function() {
+    Route::get('/', [ArticleController::class, 'index'])->name('articles');
+    Route::get('/{article}', [ArticleController::class, 'view'])->name('articles.view');
+})->middleware(['auth', 'verified']);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

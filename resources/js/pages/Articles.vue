@@ -29,7 +29,7 @@ const articlesData = computed(() => usePage().props?.articles?.data || [])
                 <div>
                     <table class="min-w-full bg-white">
                         <thead>
-                            <tr class="bg-blue-gray-100 text-gray-700 border-b">
+                            <tr class="bg-gray-500 text-white border-b">
                                 <th class="py-3 px-4 text-left">Title</th>
                                 <th class="py-3 px-4 text-left">Category</th>
                                 <th class="py-3 px-4 text-left">Comment</th>
@@ -37,7 +37,7 @@ const articlesData = computed(() => usePage().props?.articles?.data || [])
                                 <th class="py-3 px-4 text-left">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-blue-gray-900">
+                        <tbody class="">
                             <tr v-for="(article, key) in articlesData" :key="key" class="border-b border-blue-gray-200">
                                 <td class="py-3 px-4">{{ article?.title || '' }}</td>
                                 <td class="py-3 px-4 capitalize">{{ article?.category?.name || '' }}</td>
