@@ -29,7 +29,7 @@ class ArticleController extends Controller
 
         return Inertia::render('articles/show', [
             'status' => $request->session()->get('status'),
-            'articles' => $article,
+            'article' => $article,
         ]);
     }
 }
