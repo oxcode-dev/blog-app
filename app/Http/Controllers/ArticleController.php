@@ -24,6 +24,11 @@ class ArticleController extends Controller
 
     public function view(Request $request, Article $article)//: Response
     {
-        dd($article::with('category', 'comments')->firstOrFail()->toArray());
+        $article = $article::with('category', 'comments')->firstOrFail();
+
+        return Inertia::render('Articles', [
+            'status' => $request->session()->get('status'),
+            'articles' => $article,
+        ]);
     }
 }
