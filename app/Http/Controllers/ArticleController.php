@@ -15,7 +15,7 @@ class ArticleController extends Controller
                 $request->get('sortField', 'created_at'),
                 $request->get('sortAsc') === 'true' ? 'asc' : 'desc'
             )    
-            ->paginate($request->get('perPage', 5));
+            ->paginate($request->get('perPage', 10));
         return Inertia::render('Articles', [
             'status' => $request->session()->get('status'),
             'articles' => $articles,
