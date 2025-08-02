@@ -7,10 +7,12 @@ use Inertia\Inertia;
 
 class ArticleController extends Controller
 {
-    public function edit(Request $request)//: Response
+    public function index(Request $request)//: Response
     {
-        return Inertia::render('settings/Profile', [
-            'status' => $request->session()->get('status'),
-        ]);
+
+        dd('Hello World');
+        // return Inertia::render('Articles', [
+        //     'status' => $request->session()->get('status'),
+        // ]);
     }
 }
