@@ -22,7 +22,7 @@ const article = computed(() => usePage().props?.article || {})
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <div class="flex justify-end px-4">
-                <Link :href="`/articles/${article?.id}/edit`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
+                <Link :href="`/article/${article?.id}/edit`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
                     Edit
                 </Link>
             </div>
