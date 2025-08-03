@@ -20,4 +20,14 @@ class Category extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    public static function search($query)
+    {
+        $relations = ['articles'];
+
+        return empty($query) ? static::query()->with($relations)
+            : static::with($relations)
+                ->where('name', 'like', '%'.$query.'%')
+                ->orWhere('slug', 'like', '%'.$query.'%');
+    }
 }
