@@ -34,27 +34,28 @@ Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('api.articles');
     Route::get('/{article}', [ArticleController::class, 'show'])->name('api.articles_show');
     Route::get('/{article}/comments', [ArticleController::class, 'comments'])->name('api.articles_comments');
-    Route::post('/{article}/comments', [ArticleController::class, 'storeComment'])->name('api.articles_comments');
-});
+})->middleware('auth:sanctum');
 
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('api.categories');
     Route::get('/{category}', [CategoryController::class, 'show'])->name('api.categories_show');
     Route::get('/{category}/articles', [CategoryController::class, 'articles'])->name('api.categories_articles');
-});
+})->middleware('auth:sanctum');
 
 Route::prefix('comments')->group(function () {
     Route::get('/', [CommentController::class, 'index'])->name('api.comments');
+    Route::post('/', [CommentController::class, 'store'])->name('api.comments_store');
+    Route::delete('/{comment}', [CommentController::class, 'destroy'])->name('api.comments_destroy');
     Route::get('/{comment}', [CommentController::class, 'show'])->name('api.comments_show');
-});
+})->middleware('auth:sanctum');
 
 Route::get('/user', function (Request $request) {
     if($request->user()) {
         return $request->user();
     }
 });
-Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('api.update_profile');
-Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('api.update_password');
+Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->middleware('auth:sanctum')->name('api.update_profile');
+Route::post('/change-password', [ProfileController::class, 'updatePassword'])->middleware('auth:sanctum')->name('api.update_password');
 
 
 Route::prefix('bookmark')->group(function () {
@@ -63,4 +64,4 @@ Route::prefix('bookmark')->group(function () {
     Route::get('/{bookmark}', [BookmarkController::class, 'show'])->name('api.bookmarks_show');
 
     Route::post('/', [BookmarkController::class, 'updateBookmark'])->name('api.bookmark_update');
-});
+})->middleware('auth:sanctum');

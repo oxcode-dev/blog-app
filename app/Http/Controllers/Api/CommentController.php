@@ -55,7 +55,6 @@ class CommentController extends BaseController
     {
         Comment::find($comment->id)?->delete();
         
-        
         return $this->sendResponse(
             'Article comment deleted successfully.',
             'Article Comment Deleted!!!.',
