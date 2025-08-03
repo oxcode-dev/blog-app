@@ -28,6 +28,7 @@ const form = useForm({
     image: article.value?.image || '',
     source: article.value?.source || '',
     url: article.value?.url || '',
+    id: article.value?.id || null,
 });
 
 const submit = () => {

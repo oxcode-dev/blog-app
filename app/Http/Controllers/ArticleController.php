@@ -57,15 +57,23 @@ class ArticleController extends Controller
 
         $article = $request->input('id') !== null 
                     ? Article::find($request->input('id'))
-                    : null;
+                    : new Article();
 
-        dd($article, $data);
+        $article->title = $data['title'];
+        $article->content = $data['content'];
+        $article->description = $data['description'];
+        $article->author = $data['author'];
+        $article->image = $data['image'];
+        $article->url = $data['url'];
+        $article->source = $data['source'];
+        $article->category_id = $data['category_id'];
 
+        $article->save();
 
-        // return Inertia::render('articles/Form', [
-        //     'status' => $request->session()->get('status'),
-        //     'categories' => Category::all(),
-        // ]);
+        return back()->with([
+            'status' => $request->session()->get('status'),
+            'article' => $article,
+        ]);
     }
 
     public function edit(Request $request, Article $article)
