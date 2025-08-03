@@ -63,7 +63,7 @@ const submit = () => {
                                 v-model="form.title"
                                 placeholder="Article Title..."
                             />
-                            <InputError :message="form?.errors?.author" />
+                            <InputError :message="form?.errors?.title" />
                         </div>
                         <div class="grid gap-2">
                             <Label for="category_id">Category</Label>
