@@ -21,6 +21,13 @@ const categories = computed(() => usePage().props?.categories || [])
 
 const form = useForm({
     title: '',
+    content: '',
+    description: '',
+    author: '',
+    category_id: '',
+    image: '',
+    source: '',
+    url: '',
 });
 
 </script>
@@ -70,7 +77,6 @@ const form = useForm({
                                 id="author"
                                 type="text"
                                 required
-                                autofocus
                                 :tabindex="1"
                                 autocomplete="author"
                                 v-model="form.author"
@@ -84,7 +90,6 @@ const form = useForm({
                                 id="url"
                                 type="url"
                                 required
-                                autofocus
                                 :tabindex="1"
                                 autocomplete="url"
                                 v-model="form.url"
@@ -98,27 +103,48 @@ const form = useForm({
                                 id="source"
                                 type="text"
                                 required
-                                autofocus
                                 :tabindex="1"
-                                autocomplete="source"
                                 v-model="form.source"
                                 placeholder="source..."
                             />
                             <InputError :message="form?.errors?.source" />
                         </div>
                         <div class="grid gap-2">
-                            <Label for="url">Description</Label>
-                            <Input
-                                id="url"
-                                type="url"
+                            <Label for="description">Description</Label>
+                            <textarea
+                                id="description"
                                 required
-                                autofocus
                                 :tabindex="1"
-                                autocomplete="url"
-                                v-model="form.url"
-                                placeholder="https://www.johndoe.com"
+                                v-model="form.description"
+                                rows="6"
+                                class="block w-full pl-2 pr-10 py-2 text-base border border-gray-300 focus:outline-hidden sm:text-sm rounded-md capitalize"
+                                placeholder="Description..."
+                            ></textarea>
+                            <InputError :message="form?.errors?.description" />
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="content">Content</Label>
+                            <textarea
+                                id="content"
+                                required
+                                :tabindex="1"
+                                v-model="form.content"
+                                rows="6"
+                                class="block w-full pl-2 pr-10 py-2 text-base border border-gray-300 focus:outline-hidden sm:text-sm rounded-md capitalize"
+                                placeholder="Content..."
+                            ></textarea>
+                            <InputError :message="form?.errors?.content" />
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="image">Image URL</Label>
+                            <Input
+                                id="image"
+                                type="url"
+                                :tabindex="1"
+                                v-model="form.image"
+                                placeholder="https://www.johndoe.com/pix.png"
                             />
-                            <InputError :message="form?.errors?.url" />
+                            <InputError :message="form?.errors?.image" />
                         </div>
                         <div>
                             <Button type="submit" class="mt-4" :tabindex="4" :disabled="form.processing">
