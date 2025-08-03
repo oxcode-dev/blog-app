@@ -89,7 +89,7 @@ class ArticleController extends Controller
     {
         $article->delete();
 
-        return back()->with([
+        return redirect('/articles')->with([
             'status' => $request->session()->get('status'),
         ]);
     }
