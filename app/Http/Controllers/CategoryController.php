@@ -17,9 +17,9 @@ class CategoryController extends Controller
             )    
             ->paginate($request->get('perPage', 10));
 
-        return Inertia::render('articles/index', [
+        return Inertia::render('categories/index', [
             'status' => $request->session()->get('status'),
-            'articles' => $categories,
+            'categories' => $categories,
         ]);
     }
 
@@ -27,15 +27,15 @@ class CategoryController extends Controller
     {
         $category = $category::with('category', 'comments')->whereId($category->id)->firstOrFail();
 
-        return Inertia::render('articles/show', [
+        return Inertia::render('categories/show', [
             'status' => $request->session()->get('status'),
-            'article' => $category,
+            'category' => $category,
         ]);
     }
 
     public function create(Request $request)
     {
-        return Inertia::render('articles/Form', [
+        return Inertia::render('categories/Form', [
             'status' => $request->session()->get('status'),
             'categories' => Category::all(),
         ]);
@@ -71,15 +71,15 @@ class CategoryController extends Controller
 
         return back()->with([
             'status' => $request->session()->get('status'),
-            'article' => $category,
+            'category' => $category,
         ]);
     }
 
     public function edit(Request $request, Category $category)
     {
-        return Inertia::render('articles/Form', [
+        return Inertia::render('categories/Form', [
             'status' => $request->session()->get('status'),
-            'article' => $category,
+            'category' => $category,
             'categories' => Category::all(),
         ]);
     }
@@ -88,7 +88,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect('/articles')->with([
+        return redirect('/categories')->with([
             'status' => $request->session()->get('status'),
         ]);
     }
