@@ -19,11 +19,11 @@ const form = useForm({});
 const handleDeleteArticle = () => {
     if(confirm('Are you sure, you want to delete this article?')) {
         form.delete(route('articles.delete', { article: article.value.id }), {
-        onFinish: () => {
-            alert('Article deleted Successfully!!!')
-            router.visit('/articles ')
-        } 
-    });
+            onFinish: () => {
+                alert('Article deleted Successfully!!!')
+                router.visit('/articles')
+            } 
+        });
     }
 }
 
