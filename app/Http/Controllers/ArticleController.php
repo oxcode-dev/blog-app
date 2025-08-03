@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
     public function view(Request $request, Article $article)//: Response
     {
-        $article = $article::with('category', 'comments')->firstOrFail();
+        $article = $article::with('category', 'comments')->whereId($article->id)->firstOrFail();
 
         return Inertia::render('articles/show', [
             'status' => $request->session()->get('status'),
