@@ -84,4 +84,15 @@ class ArticleController extends Controller
             'categories' => Category::all(),
         ]);
     }
+
+    public function delete(Request $request, Article $article)
+    {
+        dd($article, $request->all());
+        
+        return Inertia::render('articles/Form', [
+            'status' => $request->session()->get('status'),
+            'article' => $article,
+            'categories' => Category::all(),
+        ]);
+    }
 }

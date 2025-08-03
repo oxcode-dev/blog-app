@@ -18,7 +18,7 @@ const form = useForm({});
 
 const handleDeleteArticle = () => {
     if(confirm('Are you sure, you want to delete this article?')) {
-        form.delete(route('articles.delete', { article }), {
+        form.delete(route('articles.delete', { article: article.value.id }), {
         onFinish: () => {
             alert('Article deleted Successfully!!!')
             router.visit('/articles ')
@@ -34,7 +34,7 @@ const handleDeleteArticle = () => {
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
-            <div class="flex justify-end px-4">
+            <div class="flex justify-end px-4 space-x-3">
                 <Link :href="`/articles/${article?.id}/edit`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
                     Edit
                 </Link>
