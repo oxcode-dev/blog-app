@@ -42,6 +42,21 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'otp' => 'required',
+            'email' => 'required|email',
+            'password' => ['required'],
+            // 'password' => ['required', 'confirmed'],
+        ]);
+        
+        return Inertia::render('articles/Form', [
+            'status' => $request->session()->get('status'),
+            'categories' => Category::all(),
+        ]);
+    }
+
     public function edit(Request $request, Article $article)
     {
         return Inertia::render('articles/Form', [

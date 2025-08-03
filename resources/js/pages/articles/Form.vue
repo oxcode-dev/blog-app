@@ -20,14 +20,14 @@ const article = computed(() => usePage().props?.article || {})
 const categories = computed(() => usePage().props?.categories || [])
 
 const form = useForm({
-    title: '',
-    content: '',
-    description: '',
-    author: '',
-    category_id: '',
-    image: '',
-    source: '',
-    url: '',
+    title: article.value?.title || '',
+    content: article.value?.content || '',
+    description: article.value?.description || '',
+    author: article.value?.author || '',
+    category_id: article.value?.category_id || '',
+    image: article.value?.image || '',
+    source: article.value?.source || '',
+    url: article.value?.url || '',
 });
 
 const submit = () => {
@@ -51,8 +51,8 @@ const submit = () => {
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <div class="bg-white shadow-sm overflow-hidden sm:rounded-lg my-4">
                 <div class="px-4 py-5 w-full md:max-w-lg">
-                    <form class="space-y-2">
-                        <pre>{{ article }}</pre>
+                    <form @submit.prevent="submit" class="space-y-2">
+                        <!-- <pre>{{ article }}</pre> -->
                         <div class="grid gap-2">
                             <Label for="title">Title</Label>
                             <Input
