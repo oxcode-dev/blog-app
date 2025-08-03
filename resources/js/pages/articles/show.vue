@@ -16,9 +16,9 @@ const article = computed(() => usePage().props?.article || {})
 
 const form = useForm({});
 
-const handleEditArticle = () => {
+const handleDeleteArticle = () => {
     if(confirm('Are you sure, you want to delete this article?')) {
-        form.post(route('articles.store'), {
+        form.delete(route('articles.delete', { article }), {
         onFinish: () => {
             alert('Article deleted Successfully!!!')
             router.visit('/articles ')
@@ -39,9 +39,9 @@ const handleEditArticle = () => {
                     Edit
                 </Link>
 
-                <Link :href="`/articles/${article?.id}/edit`" class="bg-red-600 text-white rounded-lg px-4 py-2">
+                <a @click="handleDeleteArticle" href="#" class="bg-red-600 text-white rounded-lg px-4 py-2">
                     Delete
-                </Link>
+                </a>
             </div>
             <div class="bg-transparent shadow-sm overflow-hidden sm:rounded-lg my-4">
                 <div class="px-4 py-5 sm:p-0">
