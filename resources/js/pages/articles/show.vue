@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/vue3';
+import { Head, Link, usePage, router, useForm, } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 
@@ -14,6 +14,19 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const article = computed(() => usePage().props?.article || {})
 
+const form = useForm({});
+
+const handleEditArticle = () => {
+    if(confirm('Are you sure, you want to delete this article?')) {
+        form.post(route('articles.store'), {
+        onFinish: () => {
+            alert('Article deleted Successfully!!!')
+            router.visit('/articles ')
+        } 
+    });
+    }
+}
+
 </script>
 
 <template>
@@ -24,6 +37,10 @@ const article = computed(() => usePage().props?.article || {})
             <div class="flex justify-end px-4">
                 <Link :href="`/articles/${article?.id}/edit`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
                     Edit
+                </Link>
+
+                <Link :href="`/articles/${article?.id}/edit`" class="bg-red-600 text-white rounded-lg px-4 py-2">
+                    Delete
                 </Link>
             </div>
             <div class="bg-transparent shadow-sm overflow-hidden sm:rounded-lg my-4">

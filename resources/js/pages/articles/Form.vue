@@ -3,10 +3,10 @@ import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
-import { ref } from 'vue';
 import { computed } from 'vue';
+
 
 
 const breadcrumbs = [
@@ -32,14 +32,11 @@ const form = useForm({
 });
 
 const submit = () => {
-    // if(article.value.id) {
-    //     return form.post(route('login'), {
-    //         onFinish: () => form.reset('password'),
-    //     });
-    // }
-
     form.post(route('articles.store'), {
-        onFinish: () => console.log('Hello World')//form.reset('password'),
+        onFinish: () => {
+            alert('Article Saved Successfully!!!')
+            router.visit('/articles ')
+        } 
     });
 };
 
