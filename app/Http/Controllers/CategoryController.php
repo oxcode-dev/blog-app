@@ -25,7 +25,7 @@ class CategoryController extends Controller
 
     public function view(Request $request, Category $category)//: Response
     {
-        $category = $category::with('category', 'comments')->whereId($category->id)->firstOrFail();
+        $category = $category::with('articles',)->whereId($category->id)->firstOrFail();
 
         return Inertia::render('categories/show', [
             'status' => $request->session()->get('status'),

@@ -7,21 +7,21 @@ import { computed } from 'vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Articles',
-        href: '/articles',
+        title: 'Categories',
+        href: '/categories',
     },
 ];
 
-const article = computed(() => usePage().props?.article || {})
+const category = computed(() => usePage().props?.category || {})
 
 const form = useForm({});
 
-const handleDeleteArticle = () => {
-    if(confirm('Are you sure, you want to delete this article?')) {
-        form.delete(route('articles.delete', { article: article.value.id }), {
+const handleDeleteCategory = () => {
+    if(confirm('Are you sure, you want to delete this category?')) {
+        form.delete(route('categories.delete', { category: category.value.id }), {
             onFinish: () => {
-                alert('Article deleted Successfully!!!')
-                router.visit('/articles')
+                alert('Category deleted Successfully!!!')
+                router.visit('/categories')
             } 
         });
     }
@@ -30,16 +30,16 @@ const handleDeleteArticle = () => {
 </script>
 
 <template>
-    <Head title="Articles" />
+    <Head title="Categories" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <div class="flex justify-end px-4 space-x-3">
-                <Link :href="`/articles/${article?.id}/edit`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
+                <Link :href="`/categories/${category?.id}/edit`" class="bg-blue-600 text-white rounded-lg px-4 py-2">
                     Edit
                 </Link>
 
-                <a @click="handleDeleteArticle" href="#" class="bg-red-600 text-white rounded-lg px-4 py-2">
+                <a @click="handleDeleteCategory" href="#" class="bg-red-600 text-white rounded-lg px-4 py-2">
                     Delete
                 </a>
             </div>
@@ -48,41 +48,41 @@ const handleDeleteArticle = () => {
                     <dl class="sm:divide-y sm:divide-gray-200 capitalize">
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Title</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.title || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.title || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Author</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.author || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.author || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Category</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.category?.name || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.category?.name || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">url</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 lowercase">{{ article?.url || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 lowercase">{{ category?.url || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">source</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.source || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.source || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">description</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.description || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.description || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">content</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.content || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.content || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Image</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <img :src="article?.image" :alt="article?.title" />
+                                <img :src="category?.image" :alt="category?.title" />
                             </dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Posted Date</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.created_at || '' }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.created_at || '' }}</dd>
                         </div>
                     </dl>
                 </div>
