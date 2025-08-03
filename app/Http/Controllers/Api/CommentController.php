@@ -20,4 +20,6 @@ class CommentController extends Controller
             'data' => $comment::with('article')->firstOrFail(),
         ]);
     }
+
+    
 }
