@@ -15,6 +15,7 @@ Route::get('dashboard', function () {
 Route::prefix('articles')->group(function() {
     Route::get('/', [ArticleController::class, 'index'])->name('articles');
     Route::get('/create', [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('/store', [ArticleController::class, 'store'])->name('articles.store');
     Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::get('/{article}', [ArticleController::class, 'view'])->name('articles.view');
 })->middleware(['auth', 'verified']);

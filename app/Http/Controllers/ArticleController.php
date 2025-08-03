@@ -45,16 +45,27 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'otp' => 'required',
-            'email' => 'required|email',
-            'password' => ['required'],
-            // 'password' => ['required', 'confirmed'],
+            'title' => 'required',
+            'content' => 'required',
+            'description' => ['sometimes'],
+            'author' => ['sometimes'],
+            'image' => ['sometimes', 'url'],
+            'url' => ['sometimes', 'url'],
+            'category_id' => ['required'],
+            'source' => ['sometimes'],
         ]);
-        
-        return Inertia::render('articles/Form', [
-            'status' => $request->session()->get('status'),
-            'categories' => Category::all(),
-        ]);
+
+        $article = $request->input('id') !== null 
+                    ? Article::find($request->input('id'))
+                    : null;
+
+        dd($article, $data);
+
+
+        // return Inertia::render('articles/Form', [
+        //     'status' => $request->session()->get('status'),
+        //     'categories' => Category::all(),
+        // ]);
     }
 
     public function edit(Request $request, Article $article)
