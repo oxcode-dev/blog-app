@@ -49,18 +49,20 @@ const form = useForm({
                             <InputError :message="form?.errors?.author" />
                         </div>
                         <div class="grid gap-2">
-                            <Label for="author">Author</Label>
-                            <Input
-                                id="author"
+                            <Label for="category_id">Category</Label>
+                            <select
+                                id="category_id"
                                 type="text"
                                 required
-                                autofocus
-                                :tabindex="1"
-                                autocomplete="author"
-                                v-model="form.author"
-                                placeholder="Article Author..."
-                            />
-                            <InputError :message="form?.errors?.author" />
+                                v-model="form.category_id"
+                                placeholder="Category..."
+                                class="block w-full pl-2 pr-10 py-2 text-base border border-gray-300 focus:outline-hidden sm:text-sm rounded-md capitalize"
+                            >
+                                <option v-for="category in categories" :key="category.id" :value="category.id">
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                            <InputError :message="form?.errors?.category_id" />
                         </div>
                         <div class="grid gap-2">
                             <Label for="author">Author</Label>
@@ -78,6 +80,34 @@ const form = useForm({
                         </div>
                         <div class="grid gap-2">
                             <Label for="url">URL</Label>
+                            <Input
+                                id="url"
+                                type="url"
+                                required
+                                autofocus
+                                :tabindex="1"
+                                autocomplete="url"
+                                v-model="form.url"
+                                placeholder="https://www.johndoe.com"
+                            />
+                            <InputError :message="form?.errors?.url" />
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="source">Source</Label>
+                            <Input
+                                id="source"
+                                type="text"
+                                required
+                                autofocus
+                                :tabindex="1"
+                                autocomplete="source"
+                                v-model="form.source"
+                                placeholder="source..."
+                            />
+                            <InputError :message="form?.errors?.source" />
+                        </div>
+                        <div class="grid gap-2">
+                            <Label for="url">Description</Label>
                             <Input
                                 id="url"
                                 type="url"
