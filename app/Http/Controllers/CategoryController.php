@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -44,28 +45,17 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'name' => 'required',
             'description' => ['sometimes'],
-            'author' => ['sometimes'],
-            'image' => ['sometimes', 'url'],
-            'url' => ['sometimes', 'url'],
-            'category_id' => ['required'],
-            'source' => ['sometimes'],
         ]);
 
         $category = $request->input('id') !== null 
-                    ? Category::find($request->input('id'))
-                    : new Category();
+            ? Category::find($request->input('id'))
+            : new Category();
 
-        $category->title = $data['title'];
-        $category->content = $data['content'];
+        $category->name = $data['name'];
         $category->description = $data['description'];
-        $category->author = $data['author'];
-        $category->image = $data['image'];
-        $category->url = $data['url'];
-        $category->source = $data['source'];
-        $category->category_id = $data['category_id'];
+        $category->slug = Str::slug($data['name']) . '-' . strtotime(now());
 
         $category->save();
 

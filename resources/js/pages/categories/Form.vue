@@ -27,7 +27,7 @@ const form = useForm({
 const submit = () => {
     form.post(route('categories.store'), {
         onFinish: () => {
-            alert('category Saved Successfully!!!')
+            alert('Category Saved Successfully!!!')
             router.visit('/categories ')
         } 
     });
