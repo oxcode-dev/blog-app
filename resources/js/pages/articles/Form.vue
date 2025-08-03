@@ -30,6 +30,18 @@ const form = useForm({
     url: '',
 });
 
+const submit = () => {
+    if(article.value.id) {
+        return form.post(route('login'), {
+            onFinish: () => form.reset('password'),
+        });
+    }
+
+    form.post(route('login'), {
+        onFinish: () => form.reset('password'),
+    });
+};
+
 </script>
 
 <template>
