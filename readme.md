@@ -1,4 +1,4 @@
-## This project is a simple Blog app with list of API routes for a blog web application, organized by common functionality like posts, users, comments, authentication and also a fullstack back office application for manipulating data(db). 
+This project is a simple Blog app with list of API routes for a blog web application, organized by common functionality like posts, users, comments, authentication and also a fullstack back office application for manipulating data(db) using LaravelPHP and VueJS. 
 
 ## 📘 Post Routes
 
