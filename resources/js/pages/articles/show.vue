@@ -47,42 +47,42 @@ const handleDeleteArticle = () => {
                 <div class="px-4 py-5 sm:p-0">
                     <dl class="sm:divide-y sm:divide-gray-200 capitalize">
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Title</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.title || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">Title</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">{{ article?.title || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Author</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.author || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">Author</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">{{ article?.author || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Category</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.category?.name || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">Category</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">{{ article?.category?.name || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">url</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 lowercase">{{ article?.url || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">url</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2 lowercase">{{ article?.url || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">source</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.source || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">source</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">{{ article?.source || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">description</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.description || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">description</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">{{ article?.description || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">content</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.content || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">content</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">{{ article?.content || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Image</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">Image</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">
                                 <img :src="article?.image" :alt="article?.title" />
                             </dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Posted Date</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ article?.created_at || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white font-semibold">Posted Date</dt>
+                            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">{{ article?.created_at || '' }}</dd>
                         </div>
                     </dl>
                 </div>
