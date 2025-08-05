@@ -37,25 +37,27 @@ class FetchNewsFromApi extends Command
 
         // Fetch data from the API
         $response = Http::get($url);
-        // return $response->json();
+        return $response->json();
      
         if ($response->successful()) {
             $articles = $response->json()['response']['docs'] ?? [];
 
-            foreach ($articles as $article) {
-                // Save each article to the database (you can customize the fields)
-                Article::updateOrCreate(
-                    ['title' => $article['headline']['main']], 
-                    [
-                        'author' => $article['byline']['original']  ?? '',
-                        'description' => $article['snippet']  ?? '',
-                        'url' => $article['web_url']  ?? '',
-                        'content' => $article['lead_paragraph']  ?? '',
-                        'image' => 'https://static01.nyt.com/' . $article['multimedia'][0]['image']  ?? '',
-                        'source' => $article['source'] ?? '',
-                    ]
-                );
-            }
+            print_r($articles);
+
+            // foreach ($articles as $article) {
+            //     // Save each article to the database (you can customize the fields)
+            //     Article::updateOrCreate(
+            //         ['title' => $article['headline']['main']], 
+            //         [
+            //             'author' => $article['byline']['original']  ?? '',
+            //             'description' => $article['snippet']  ?? '',
+            //             'url' => $article['web_url']  ?? '',
+            //             'content' => $article['lead_paragraph']  ?? '',
+            //             'image' => 'https://static01.nyt.com/' . $article['multimedia'][0]['image']  ?? '',
+            //             'source' => $article['source'] ?? '',
+            //         ]
+            //     );
+            // }
 
             $this->info('News articles fetched and saved successfully.');
         } else {
