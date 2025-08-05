@@ -33,7 +33,7 @@ class FetchNewsFromApi extends Command
 
         // The news API endpoint (using NewsAPI as an example)
         $url = $apiUrl . "?api-key=" . $apiKey;
-        return $url;
+        // return $url;
 
         // Fetch data from the API
         $response = Http::get($url);
