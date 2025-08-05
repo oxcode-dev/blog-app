@@ -40,7 +40,7 @@ const submit = () => {
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
-            <div class="bg-white shadow-sm overflow-hidden sm:rounded-lg my-4">
+            <div class="bg-transparent shadow-sm overflow-hidden sm:rounded-lg my-4">
                 <div class="px-4 py-5 w-full md:max-w-lg">
                     <form @submit.prevent="submit" class="space-y-2">
                         <!-- <pre>{{ category }}</pre> -->
@@ -67,7 +67,7 @@ const submit = () => {
                                 :tabindex="1"
                                 v-model="form.description"
                                 rows="6"
-                                class="block w-full pl-2 pr-10 py-2 text-base border border-gray-300 focus:outline-hidden sm:text-sm rounded-md capitalize"
+                                class="block w-full pl-2 pr-10 py-2 text-base border focus:border-gray-300 focus:outline-hidden sm:text-sm rounded-md capitalize"
                                 placeholder="Description..."
                             ></textarea>
                             <InputError :message="form?.errors?.description" />
