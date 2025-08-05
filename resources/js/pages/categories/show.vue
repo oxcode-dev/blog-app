@@ -45,22 +45,22 @@ const handleDeleteCategory = () => {
             </div>
             <div class="bg-transparent shadow-sm overflow-hidden sm:rounded-lg my-4">
                 <div class="px-4 py-5 sm:p-0">
-                    <dl class="sm:divide-y sm:divide-gray-200 capitalize">
+                    <dl class="sm:divide-y sm:divide-gray-200 capitalize text-gray-900 dark:text-gray-100">
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Name</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.name || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white">Name</dt>
+                            <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">{{ category?.name || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Slug</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.slug || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white">Slug</dt>
+                            <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">{{ category?.slug || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">description</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.description || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white">description</dt>
+                            <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">{{ category?.description || '' }}</dd>
                         </div>
                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Created Date</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ category?.created_at || '' }}</dd>
+                            <dt class="text-sm font-medium text-gray-500 dark:text-white">Created Date</dt>
+                            <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">{{ category?.created_at || '' }}</dd>
                         </div>
                     </dl>
                 </div>
