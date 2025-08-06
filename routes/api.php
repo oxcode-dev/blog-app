@@ -67,4 +67,3 @@ Route::prefix('bookmark')->group(function () {
 })->middleware('auth:sanctum');
 
 
-
