@@ -20,7 +20,7 @@ class ArticleController extends BaseController
             ->paginate($request->get('perPage', 5));
 
         return $this->sendResponse(
-            ArticleResource::collection($articles),
+            $articles,
             'Articles fetched successfully.'
         );
     }
