@@ -65,3 +65,7 @@ Route::prefix('bookmark')->group(function () {
 
     Route::post('/', [BookmarkController::class, 'updateBookmark'])->name('api.bookmark_update');
 })->middleware('auth:sanctum');
+
+
+
+
